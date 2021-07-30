@@ -1,0 +1,65 @@
+﻿@model IEnumerable<StudentInfo.Models.Students>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="col-sm-12">
+    <h1>STUDENTS PROFILE</h1>
+    <div class="table-responsive">
+        <table id="studentspro" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                       Student ID
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lastname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Firstname)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lastname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Firstname)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-warning" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-primary" })
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#studentspro').DataTable();
+    });
+    </script>
+}
+
